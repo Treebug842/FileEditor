@@ -1,4 +1,3 @@
-  
 #ifndef FILEEDITOR_H
 #define FILEEDITOR_H
 
@@ -15,7 +14,6 @@ private:
     node *head = new node;
     node *tail = head;
     void _append(std::string data);
-    void _shred();
     std::string _fileName;
 public:
     void open(std::string fileName);
@@ -28,6 +26,7 @@ public:
     void addToStart(std::string text);
     void addToEnd(std::string text);
     void close();
+    ~FileEditor();
 };
 
 #endif
