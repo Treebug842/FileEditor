@@ -26,7 +26,7 @@ public:
     void addToStart(std::string text);
     void addToEnd(std::string text);
     void close();
-    ~FileEditor();
+    void _delete();
 };
 
 #endif
