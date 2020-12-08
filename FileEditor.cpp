@@ -142,7 +142,7 @@ void FileEditor::addToEnd(std::string text) {
     tail = tmp;
 }
 
-FileEditor::~FileEditor() {
+void FileEditor::_delete() {
     node *del;
     node *tmp;
     tmp = head;
@@ -171,4 +171,5 @@ void FileEditor::close() {
         if (tmp->next == NULL)
             break;
     }
+    _delete();
 }
