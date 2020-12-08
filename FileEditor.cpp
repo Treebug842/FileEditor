@@ -45,6 +45,7 @@ void FileEditor::removeFirst(std::string text) {
 }
 
 void FileEditor::removeLast(std::string text) {
+    int found = 0;
     node *pres;
     node *prev;
     node *last;
@@ -52,12 +53,14 @@ void FileEditor::removeLast(std::string text) {
     while (true) {
         if (pres->data == text) {
             last = prev;
+            found = 1;
         }
         prev = pres;
         pres = pres->next;
         if (pres->next == NULL) {
-            if (last != NULL)
+            if (found == 1) {
                 last->next = last->next->next;
+            }
             break;
         }
     }
@@ -93,17 +96,20 @@ void FileEditor::replaceFirst(std::string text, std::string replace) {
 }
 
 void FileEditor::replaceLast(std::string text, std::string replace) {
+    int found = 0;
     node *pres;
     node *last;
     pres = head;
     while (true) {
         if (pres->data == text) {
             last = pres;
+            found = 1;
         }
         pres = pres->next;
         if (pres->next == NULL) {
-            if (last != NULL)
+            if (found == 1) {
                 last->data = replace;
+            }
             break;
         }
     }
@@ -136,16 +142,16 @@ void FileEditor::addToEnd(std::string text) {
     tail = tmp;
 }
 
-void FileEditor::_shred() {
+FileEditor::~FileEditor() {
     node *del;
     node *tmp;
     tmp = head;
     while (true) {
         del = tmp;
         tmp = tmp->next;
-        free(del);
+        delete del;
         if (tmp->next == NULL) {
-            free(tmp);
+            delete tmp;
             break;
         }
     }
@@ -165,5 +171,4 @@ void FileEditor::close() {
         if (tmp->next == NULL)
             break;
     }
-    _shred();
 }
